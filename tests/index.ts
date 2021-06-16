@@ -1,6 +1,4 @@
-import * as myLib from '../src'
 import { dirData, fileData } from '../src'
-import * as fc from 'fast-check'
 
 const fs1 = dirData({
   src: dirData({
