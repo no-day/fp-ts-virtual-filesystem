@@ -62,7 +62,7 @@ export type FsObjData = FileData | DirData
 export type DirContents = Record<string, FsObjData>
 
 // -----------------------------------------------------------------------------
-// Utils
+// Internal
 // -----------------------------------------------------------------------------
 
 type Tag<T, D> = { _tag: T } & D
@@ -110,7 +110,7 @@ export const fileData = (lines: string[]): FileData =>
 
 /**
  * @since 1.0.0
- * @category Model
+ * @category Destructors
  */
 export const match =
   <Z>(onDir: (dir: Dir) => Z, onFile: (File: File) => Z) =>
@@ -123,14 +123,26 @@ export const match =
     }
   }
 
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-
+/**
+ * @since 1.0.0
+ * @category Destructors
+ */
 export const asDir: (fso: FsObj) => Option<Dir> = match(O.some, () => O.none)
 
+/**
+ * @since 1.0.0
+ * @category Destructors
+ */
 export const asFile: (fso: FsObj) => Option<File> = match(() => O.none, O.some)
 
+// -----------------------------------------------------------------------------
+// Utils
+// -----------------------------------------------------------------------------
+
+/**
+ * @since 1.0.0
+ * @category Utils
+ */
 export const lookup =
   (name: string) =>
   (dir: DirData): Option<FsObjData> =>
