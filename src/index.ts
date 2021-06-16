@@ -88,8 +88,7 @@ export const file = (name: string, lines: string[]): File =>
  * @since 1.0.0
  * @category Constructors
  */
-export const dir = (name: string, contents: DirContents = {}): Dir =>
-  tag('Dir')({ name, contents })
+export const dir = (name: string): Dir => tag('Dir')({ name, contents: {} })
 
 /**
  * @since 1.0.0
@@ -113,7 +112,7 @@ export const fileData = (lines: string[]): FileData =>
  * @since 1.0.0
  * @category Model
  */
-export const matchFsObj =
+export const match =
   <Z>(onDir: (dir: Dir) => Z, onFile: (File: File) => Z) =>
   (fso: FsObj): Z => {
     switch (fso._tag) {
